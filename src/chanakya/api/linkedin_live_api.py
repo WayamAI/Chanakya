@@ -434,3 +434,69 @@ def leaders():
                     "buy_percent": fit.get("buy_percent"), "found_at": r["found_at"],
                     "employer_confirmed": "not named" not in (r["verification"] or "")})
     return {"rows": out}
+
+
+# ---------- Prospect Intelligence: research one named decision-maker ----------
+@router.post("/person")
+def person_start(request: Request, body: dict = Body(...)):
+    name, company = str(body.get("name") or "").strip(), str(body.get("company") or "").strip()
+    if not name or not company:
+        raise HTTPException(400, "enter the person's name and their company")
+    s = _s()
+    if not (s.thread and s.thread.is_alive()):
+        raise HTTPException(409, "open LinkedIn in Chrome first")
+    return {"report_id": s.enqueue_person(name, company, by=auth.current_user(request)["name"],
+                                          role=str(body.get("role") or "").strip())}
+
+
+@router.post("/person/pick")
+def person_pick(body: dict = Body(...)):
+    from chanakya.linkedin import prospect as PI
+    rid, url = body.get("report_id"), str(body.get("url") or "")
+    with db() as con:
+        rec = PI.get(con, int(rid)) if str(rid or "").isdigit() else None
+        if rec is None:
+            raise HTTPException(404, "report not found")
+        if rec["status"] != "choose" or url not in {c.get("url") for c in rec["candidates"]}:
+            raise HTTPException(400, "pick one of the profiles offered for this report")
+        PI.update(con, rec["id"], status="researching", linkedin_url=url)
+    _s().enqueue_person_profile(rec["id"], url)
+    return {"report_id": rec["id"], "status": "researching"}
+
+
+@router.get("/persons")
+def persons():
+    from chanakya.linkedin import prospect as PI
+    with db() as con:
+        return {"reports": PI.recent(con)}
+
+
+@router.get("/person/{rid}.xlsx")
+def person_xlsx(rid: int):
+    import datetime as dt
+    import os
+    from pathlib import Path
+    from fastapi.responses import FileResponse
+    from chanakya.linkedin import prospect as PI
+    with db() as con:
+        rec = PI.get(con, rid)
+    if rec is None or rec["status"] != "ready":
+        raise HTTPException(404, "no finished report")
+    if os.getenv("CHANAKYA_EXPORT_DIR"):
+        exports = Path(os.environ["CHANAKYA_EXPORT_DIR"])
+    else:
+        from chanakya.api.app import EXPORTS as exports
+    slug = "".join(ch if ch.isalnum() else "_" for ch in rec["name"])[:40]
+    out = PI.report_xlsx(rec, exports / f"prospect_{slug}_{dt.datetime.now():%Y%m%d-%H%M%S}.xlsx")
+    return FileResponse(out, filename=out.name)
+
+
+@router.get("/person/{rid}")
+def person_get(rid: int):
+    from chanakya.linkedin import prospect as PI
+    with db() as con:
+        rec = PI.get(con, rid)
+    if rec is None:
+        raise HTTPException(404, "report not found")
+    rec.pop("profile_text", None)
+    return rec

@@ -245,7 +245,7 @@ class LiveSession:
         self.state = {"status": "stopped", "browser": "disconnected", "linkedin_session": "unknown", "action": None,
                       "page_url": None, "query": None, "target": None, "inspected": 0, "matches": 0, "new": 0,
                       "duplicates": 0, "skipped": 0, "errors": 0, "pending_searches": 0, "started_by": None,
-                      "last_search": None, "followup": None, "run": None}
+                      "last_search": None, "followup": None, "run": None, "prospect": None}
 
     # ---------- state ----------
     def _ev(self, msg: str, level: str = "info", **detail):
@@ -310,6 +310,23 @@ class LiveSession:
                        "workflow_id": None, "user_id": user_id, "extras": extras or {}})
         self._ev(f"multi-accelerator search queued: {', '.join(p['accelerator'] for p in plans)[:200]}")
         return self.status()
+
+    def enqueue_person(self, name: str, company: str, by: str = "", role: str = "") -> int:
+        """Prospect Intelligence: research one named person at a company. Returns the report id."""
+        from chanakya.linkedin import prospect as PI
+        if not (name or "").strip() or not (company or "").strip():
+            raise ValueError("person name and company are both required")
+        with self.db_factory() as con:
+            rid = PI.create(con, name, company, by, role)
+        self._set(prospect={"report_id": rid, "status": "searching"})
+        self.jobs.put({"kind": "person", "report_id": rid, "name": name.strip(), "company": company.strip(),
+                       "role": (role or "").strip(), "by": by})
+        self._ev(f"Prospect Intelligence queued: {name.strip()} ({company.strip()})")
+        return rid
+
+    def enqueue_person_profile(self, report_id: int, url: str) -> None:
+        self.jobs.put({"kind": "person_profile", "report_id": report_id, "url": url})
+        self._ev("Prospect Intelligence: profile chosen", url=url)
 
     def enqueue(self, query: str, *, pages: int = 2, target: str | None = None, workflow_id: int | None = None,
                 by: str = "") -> dict:
@@ -410,6 +427,9 @@ class LiveSession:
     def _search(self, page, job):
         if job.get("kind") == "accelerator":
             return self._accelerator(page, job)
+        if job.get("kind") in ("person", "person_profile"):
+            from chanakya.linkedin import prospect as PI
+            return PI.run_job(self, page, job)
         self._set(status="searching", query=job["query"], target=job.get("target"), inspected=0, matches=0, new=0,
                   duplicates=0, skipped=0)
         found = self._people(page, job["query"], job["pages"])

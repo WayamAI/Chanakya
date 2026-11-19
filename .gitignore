@@ -45,3 +45,6 @@ docs/first_search_result.json
 
 # --- Chanakya exports (prospect data, drafts) ---
 exports/
+
+# --- Agent scratch ---
+.superpowers/
