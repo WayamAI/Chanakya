@@ -1,0 +1,2 @@
+{"_note": "SYNTHETIC fixture - harness error when the session expired.",
+ "ok": false, "error": "RuntimeError: Not logged in (redirected to login/checkpoint). Run: uv run linkedin_harness.py login"}

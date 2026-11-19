@@ -1,0 +1,9 @@
+{"_note": "SYNTHETIC fixture - shaped like linkedin_harness.py `resolve` output (op_resolve, harness commit 404dd7e5f1). Not real people.",
+ "ok": true,
+ "data": {"input": {"name": "Asha Testperson", "company": "Example Analytics Pvt Ltd", "title": "Head of Security"},
+          "status": "found", "profile_url": "https://www.linkedin.com/in/synthetic-person-001/", "confidence": "high",
+          "best": {"url": "https://www.linkedin.com/in/synthetic-person-001/", "title": "Asha Testperson",
+                   "lines": ["Head of Security at Example Analytics Pvt Ltd", "Bengaluru"], "score": 1.0},
+          "alternatives": [{"url": "https://www.linkedin.com/in/synthetic-person-002/", "title": "Asha T.", "lines": ["Engineer"], "score": 0.4}],
+          "searches": ["https://www.linkedin.com/search/results/people/?keywords=Asha%20Testperson%20Example%20Analytics%20Pvt%20Ltd"]},
+ "saved": "outputs/20261104-120000_resolve_Asha_Testperson.json"}

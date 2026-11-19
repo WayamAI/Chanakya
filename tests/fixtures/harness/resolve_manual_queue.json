@@ -1,0 +1,9 @@
+{"_note": "SYNTHETIC fixture - low-confidence `resolve` result. Not real people.",
+ "ok": true,
+ "data": {"input": {"name": "Ravi Samplename", "company": "Example Analytics Pvt Ltd", "title": "CTO"},
+          "status": "manual_queue", "profile_url": null, "confidence": "low",
+          "best": {"url": "https://www.linkedin.com/in/synthetic-person-003/", "title": "Ravi S", "lines": ["Student"], "score": 0.3},
+          "alternatives": [{"url": "https://www.linkedin.com/in/synthetic-person-004/", "title": "Ravi Samplename", "lines": ["Founder, Other Co"], "score": 0.55}],
+          "searches": ["https://www.linkedin.com/search/results/people/?keywords=Ravi%20Samplename%20Example%20Analytics%20Pvt%20Ltd",
+                       "https://www.linkedin.com/search/results/people/?keywords=Ravi%20Samplename"]},
+ "saved": "outputs/20261104-120100_resolve_Ravi_Samplename.json"}

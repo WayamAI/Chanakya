@@ -1,0 +1,7 @@
+{"_note": "SYNTHETIC fixture - no search results (e.g. LinkedIn DOM changed). Must never mean 'not on LinkedIn'.",
+ "ok": true,
+ "data": {"input": {"name": "Meera Fictional", "company": "Example Analytics Pvt Ltd", "title": ""},
+          "status": "manual_queue", "profile_url": null, "confidence": "low", "best": null, "alternatives": [],
+          "searches": ["https://www.linkedin.com/search/results/people/?keywords=Meera%20Fictional%20Example%20Analytics%20Pvt%20Ltd",
+                       "https://www.linkedin.com/search/results/people/?keywords=Meera%20Fictional"]},
+ "saved": "outputs/20261104-120200_resolve_Meera_Fictional.json"}

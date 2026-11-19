@@ -1,0 +1,2 @@
+{"_note": "SYNTHETIC fixture - harness daily page budget exhausted.",
+ "ok": false, "error": "RuntimeError: Daily page limit 200 reached (DAILY_PAGE_LIMIT). Try tomorrow."}

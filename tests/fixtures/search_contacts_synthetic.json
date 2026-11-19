@@ -1,0 +1,16 @@
+{
+  "_fixture_note": "SYNTHETIC test data. Not a real Clay response; the real search-contacts payload shape has not been observed. Names and domains are fake (.example TLD).",
+  "taskId": "mcp-task_SYNTHETIC0001",
+  "results": [
+    {"full_name": "Asha Example", "linkedin_url": "https://in.linkedin.com/in/Asha-Example-123/",
+     "experiences": [{"job_title": "Chief Information Security Officer", "seniority": "C-suite", "is_current": true,
+                      "company_domain": "alpha.example"},
+                     {"job_title": "Security Analyst", "seniority": "Mid-level", "is_current": false,
+                      "company_domain": "old.example"}]},
+    {"full_name": "Asha  Example", "linkedin_url": "https://www.linkedin.com/in/asha-example-123",
+     "experiences": [{"job_title": "Chief Information Security Officer", "seniority": "C-suite", "is_current": true,
+                      "company_domain": "alpha.example"}]},
+    {"full_name": "Ravi Sample", "job_title": "Head of IT Operations", "company_domain": "beta.example"},
+    {"full_name": "Nobody Elsewhere", "job_title": "CTO", "company_domain": "unrelated.example"}
+  ]
+}

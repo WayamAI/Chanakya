@@ -1,0 +1,8 @@
+{
+  "scope": "pilot",
+  "description": "Search constraints for the initial Company Scout pilot. Applied at query time only; never written into the product catalogue or stored ICPs.",
+  "countries": ["India"],
+  "approved_by": "account owner (chat instruction)",
+  "approved_at": "2026-11-03",
+  "note": "India is a pilot-level geography decision, not a stated product requirement."
+}

@@ -1,0 +1,78 @@
+# Wayam AI approved content catalogue: the ONE place agents get company copy, reusable paragraphs and the signature.
+# Edit this file (or Settings > Content in the UI); no code change is needed. Every entry says where it comes from.
+# Rules: never add customer names, partnerships, metrics or case studies Wayam has not published. Proof points live in
+# the proof registry (accelerator_proof table), not here. Accelerator descriptions live in the products table
+# (wayam.ai/accelerators pages); this file only adds approved outreach wording on top.
+version: 1
+updated: "2026-11-09"
+source: "Lakshya handover, 4 Nov 2026 (sections 1, 2, 4, 8.8) and wayam.ai"
+
+company:
+  name: Wayam AI
+  website: https://wayam.ai
+  accelerators_url: https://wayam.ai/accelerators
+  introduction: >-
+    Wayam AI builds ready-made, adaptable accelerators that we fit to a company's systems instead of starting from a
+    blank page.
+  overview: >-
+    Wayam AI is an enterprise AI transformation and co-creation partner. We start with consulting, run a workshop, then
+    deliver. Scope is fixed and milestone-gated.
+  positioning: enterprise AI transformation and co-creation partner (consulting, then a workshop, then delivery)
+  pricing_posture: fixed scope, milestone-gated, outcome-guaranteed
+  public_naming:
+    # Naming NDA: Wayam AI is not named in PUBLIC posts until about Jan 2027. Private outreach emails do name it.
+    nda_until: "2027-01-01"
+    private_email_may_name_company: true
+
+founder:
+  name: Vineet Shukla
+  title: Founder & CEO, Wayam AI
+  background: >-
+    25+ years in technology leadership at Mahindra Group and Mahindra Teqo, Optum, GE Healthcare and Infosys.
+  public_bio_without_company: CTO, Innovator and Founder
+
+voice:
+  rules:
+    - Short, direct sentences. First person, spoken.
+    - No em dashes, no emojis, no exclamation marks.
+    - No corporate jargon (leverage, synergy, ecosystem).
+    - Outcome-focused, credible, not salesy.
+    - Client-facing material comes from wayam.ai only, never J2W.
+  email_structure:
+    - Greeting
+    - One sentence on the specific signal
+    - One sentence on what Wayam does plus one proof point it has (proof registry only)
+    - One small ask (20 minutes)
+    - Accelerator URL
+    - Signature
+  target_words: [58, 82]
+
+paragraphs:
+  # Reusable, approved sentences. {accelerator} and {company} are filled in by the drafting agent.
+  what_we_do: At Wayam AI we build adaptable accelerators. {accelerator} is the one that fits here.
+  what_we_do_generic: At Wayam AI we build adaptable accelerators for problems like this.
+  ask: Worth 20 minutes next week to see if it fits?
+  partner_ask: Worth 20 minutes to see if a partner accelerator would cut the hours per migration?
+
+accelerator_angles:
+  # Optional approved one-liners per accelerator (product id -> sentence). Leave out what is not approved.
+  PRD-SETU: Setu moves legacy BI estates to modern platforms with automated conversion and parity checks.
+  PRD-SANTULAN: Santulan gives real-time health monitoring, yield optimisation and predictive maintenance for renewable assets.
+  PRD-WAYAM-EYE: Wayam Eye turns drone, robot or fixed-camera visual and thermal imagery into inspection findings.
+
+personalisation_examples:
+  - signal: "a tender or RFI for a BI migration"
+    opening: "I saw your notice on moving off {platform}."
+  - signal: "hiring for a migration role"
+    opening: "I saw you are hiring to move {platform} reports by hand."
+  - signal: "a regulation deadline"
+    opening: "The new deadline lands on {date}, and I saw it touches your team."
+
+signature:
+  # Approved sign-off for drafts written in Vineet's name. CHANAKYA_SENDER in .env overrides the name line.
+  lines:
+    - Vineet Shukla
+    - Founder & CEO, Wayam AI
+    - https://wayam.ai
+  contact_email: null   # not published in the handover; add only an address Vineet approves
+  approved: false       # set true once Vineet confirms the signature block

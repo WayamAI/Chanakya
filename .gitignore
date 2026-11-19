@@ -1,0 +1,47 @@
+# --- Secrets (never commit) ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+client_secret*.json
+token*.json
+.chanakya/
+
+# --- Databases & backups (live data stays local) ---
+data/*
+!data/pilot_scope.json
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.db-wal
+*.db-shm
+*.bak
+
+# --- Python build / test artifacts ---
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+
+# --- Editor / OS ---
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+
+# --- Raw Clay output ---
+docs/first_search_result.json
+
+# --- Chanakya exports (prospect data, drafts) ---
+exports/
